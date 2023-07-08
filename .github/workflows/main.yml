@@ -90,7 +90,7 @@ build_and_push_to_docker_hub:
           # Для каждого пересобранного образа 
           # устанавливаем тег latest, чтобы потом
           # на сервере и в docker-compose.yml не указывать версию
-          tags: derbasova/taski_backend:latest
+          tags: derbasova/taski_backend
   frontend_tests:
     runs-on: ubuntu-latest
 
