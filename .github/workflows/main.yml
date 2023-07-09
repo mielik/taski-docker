@@ -8,6 +8,16 @@ on:
 jobs:
   tests:
     runs-on: ubuntu-latest
+name: Main Taski workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
     services:
       postgres:
         image: postgres:13.10
@@ -102,7 +112,7 @@ jobs:
         with:
           context: ./frontend/
           push: true
-          tags: derbasova/taski_frontend:latest
+          tags: derbasova/taski_frontend:latest 
   build_gateway_and_push_to_docker_hub:
     name: Push gateway Docker image to DockerHub
     runs-on: ubuntu-latest
@@ -121,8 +131,8 @@ jobs:
         with:
           context: ./gateway/
           push: true
-          # Тут вместо username должен быть ваш логин на Docker Hub
-          tags: derbasova/taski_gateway:latest
+          # Тут вместо username должен быть ваш логин на Docker Hu
+          tags: derbasova/taski_gateway:latest 
   deploy:
     runs-on: ubuntu-latest
     needs: 
@@ -164,5 +174,5 @@ jobs:
           # Выполняет миграции и сбор статики
           sudo docker compose -f docker-compose.production.yml exec backend python manage.py migrate
           sudo docker compose -f docker-compose.production.yml exec backend python manage.py collectstatic
-          sudo docker compose -f docker-compose.production.yml exec backend cp -r /app/collected_static/. /backend_static/static/ 
+          sudo docker compose -f docker-compose.production.yml exec backend cp -r /app/collected_static/. /backend_static/static/
 
